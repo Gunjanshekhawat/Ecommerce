@@ -69,16 +69,23 @@ function Collections() {
         break;
     }
   }
-  useEffect(()=>{
-    sortProducts()
-  },[sortType])
+ // This runs once on mount and updates when filters/search/sort change
+useEffect(() => {
+  applyFilter();
+}, [category, subcategory, search, showsearch, sortType]);
 
-useEffect(()=>{
- setfilterProduct(products)
-},[products])
-useEffect(()=>{
- applyFilter()
-},[category,subcategory,search,showsearch])
+// This handles async loading of products without resetting filtered ones
+useEffect(() => {
+  if (
+    !search &&
+    !showsearch &&
+    category.length === 0 &&
+    subcategory.length === 0
+  ) {
+    setfilterProduct(products);
+  }
+}, [products]);
+
 
   return (
     <div className='w-[100vw] min-h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] flex items-start flex-col md:flex-row justify-start pt-[70px] overflow-x-hidden z-[2]'>
@@ -116,7 +123,7 @@ useEffect(()=>{
           </select>
         </div>
       
-        <div className='lg:w-[60vw] md:w-[60vw]  w-[100vw] min-h-[70vh] flex items-center justify-center fles-wrap gap-[30px]'>
+        <div className='lg:w-[60vw] md:w-[60vw]  w-[100vw] min-h-[70vh] flex items-center justify-center flex-wrap gap-[30px]'>
           {
               filterProduct.map((item,index)=>{
                     return   <Card key={index} id={item._id} name={item.name} price={item.price} image={item.image1}/>

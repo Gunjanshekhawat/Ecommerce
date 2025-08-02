@@ -140,8 +140,8 @@ import Loading from '../components/Loading'
                     </div>
                       </div>
                       <div className='flex items-center justify-start gap-[10px] mt-[20px]'>
-                              <input type="checkbox" id="checkbox" className='w-[25px] h-[25px] cursor-pointer' onChange={()=>setBestSeller(prev=>!prev)}/>
-                              <label htmlFor='checkbox' className='text-[18px] md:text-[22px] font-semibold'>Add to BestSeller</label>
+                              <input type="checkbox" id="checkbox" className='w-[25px] h-[25px] cursor-pointer' />
+                              <label htmlFor='checkbox' className='text-[18px] md:text-[22px] font-semibold' onChange={()=>setBestSeller(prev=>!prev)}>Add to BestSeller</label>
                       </div>
                    
                     <div>
